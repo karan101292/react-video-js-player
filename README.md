@@ -118,7 +118,7 @@ export default VideoApp;
       <td>autoplay</td>
       <td><code>boolean</code></td>
       <td><code>false</code></td>
-      <td>Video will start playing automatically in <code>true</code></td>
+      <td>Video will start playing automatically if <code>true</code></td>
     </tr>
     <tr>
       <td>preload</td>
