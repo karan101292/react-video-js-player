@@ -1,0 +1,40 @@
+{
+  "name": "react-video-js-player",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build/index.js",
+  "scripts": {
+    "start": "webpack --watch --mode development",
+    "build": "webpack --mode production"
+  },
+  "keywords": [
+    "react-video-js-player"
+  ],
+  "author": "Karan Rupesh",
+  "license": "ISC",
+  "peerDependencies": {
+    "react": "^16.6.3"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.2",
+    "react": "^16.6.3",
+    "webpack": "^4.26.1",
+    "video.js": "^7.4.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "babel-loader": "^8.0.4",
+    "babel-plugin-transform-object-rest-spread": "^7.0.0-beta.3",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "css-loader": "^1.0.0",
+    "file-loader": "^2.0.0",
+    "image-webpack-loader": "^4.5.0",
+    "node-sass": "^4.9.4",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "url-loader": "^1.1.2",
+    "webpack-cli": "^3.1.2"
+  }
+}
