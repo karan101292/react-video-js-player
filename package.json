@@ -1,7 +1,9 @@
 {
   "name": "react-video-js-player",
   "version": "1.0.0",
-  "description": "",
+  "description": "React wrapper for VideoJS",
+  "homepage": "https://github.com/karan101292/react-video-js-player#readme",
+  "repository": "https://github.com/karan101292/react-video-js-player",
   "main": "build/index.js",
   "scripts": {
     "start": "webpack --watch --mode development",
