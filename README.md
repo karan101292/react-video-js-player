@@ -144,16 +144,10 @@ export default VideoApp;
       <td><code>""</code></td>
       <td>Video player wrapper class. It can be used for custom player skin.</td>
     </tr>
-    <tr>
-      <td>hidePlaybackRates</td>
-      <td><code>boolean</code></td>
-      <td><code>false</code></td>
-      <td>Video speed control visibility toggle</td>
-    </tr>
   </tbody> 
 </table>
 
-### Video tracking events as props:
+### Video tracking props:
 <table> 
   <thead> 
     <tr>
