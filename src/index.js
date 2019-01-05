@@ -8,22 +8,30 @@ class VideoPlayer extends Component {
     playerId = `video-player-${(new Date) * 1}`
     player = {};
     componentDidMount() {
-        this.init_player();
-        this.init_player_events();
+        this.init_player(this.props);
+        this.init_player_events(this.props);
+    }
+
+    componentWillReceiveProps(nextProps){
+        this.set_controls_visibility(this.player, nextProps.hideControls);
+        if(this.props.src !== nextProps.src){
+            this.init_player(nextProps);
+        }
     }
 
     componentWillUnmount() {
         if (this.player) this.player.dispose();
     }
 
-    init_player() {
-        const playerOptions = this.generate_player_options();
+    init_player(props) {
+        const playerOptions = this.generate_player_options(props);
         this.player = videojs(document.querySelector(`#${this.playerId}`), playerOptions);
-        this.set_controls_visibility(this.player);
+        this.player.src(props.src)
+        this.player.poster(props.poster)
+        this.set_controls_visibility(this.player, props.hideControls);
     }
 
-    generate_player_options(){
-        const { props } = this;
+    generate_player_options(props){
         const playerOptions = {};
         playerOptions.controls = props.controls;
         playerOptions.autoplay = props.autoplay;
@@ -36,19 +44,17 @@ class VideoPlayer extends Component {
         return playerOptions;
     }
 
-    set_controls_visibility(player){
-        this.props.hideControls.map(x => { player.controlBar[Controls[x]].hide() });
+    set_controls_visibility(player, hidden_controls){
+        Object.keys(Controls).map(x => { player.controlBar[Controls[x]].show() })
+        hidden_controls.map(x => { player.controlBar[Controls[x]].hide() });
     }
 
-    init_player_events() {
-        const { props } = this;
+    init_player_events(props) {
         let currentTime = 0;
         let previousTime = 0;
         let position = 0;
 
         this.player.ready(() => {
-            this.player.src(props.src)
-            this.player.poster(props.poster)
             props.onReady(this.player);
             window.player = this.player;
         });
