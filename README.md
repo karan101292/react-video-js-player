@@ -1,5 +1,5 @@
 # react-video-js-player
-React wrapper for VideoJS.
+React wrapper for VideoJS. [Live Demo](https://karan101292.github.io/react-video-js-player/)
 
 ## Install
 ```
