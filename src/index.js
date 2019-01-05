@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Controls from './Controls.json';
 import videojs from 'video.js';
 import 'video.js/dist/video-js.css';
-
 
 class VideoPlayer extends Component {
     playerId = `video-player-${(new Date) * 1}`
@@ -17,6 +17,12 @@ class VideoPlayer extends Component {
     }
 
     init_player() {
+        const playerOptions = this.generate_player_options();
+        this.player = videojs(document.querySelector(`#${this.playerId}`), playerOptions);
+        this.set_controls_visibility(this.player);
+    }
+
+    generate_player_options(){
         const { props } = this;
         const playerOptions = {};
         playerOptions.controls = props.controls;
@@ -24,8 +30,14 @@ class VideoPlayer extends Component {
         playerOptions.preload = props.preload;
         playerOptions.width = props.width;
         playerOptions.height = props.height;
-        if (!props.hidePlaybackRates) playerOptions.playbackRates = props.playbackRates;
-        this.player = videojs(document.querySelector(`#${this.playerId}`), playerOptions);
+        playerOptions.bigPlayButton = props.bigPlayButton;
+        const hidePlaybackRates = props.hidePlaybackRates || props.hideControls.includes('playbackrates');
+        if (!hidePlaybackRates) playerOptions.playbackRates = props.playbackRates;
+        return playerOptions;
+    }
+
+    set_controls_visibility(player){
+        this.props.hideControls.map(x => { player.controlBar[Controls[x]].hide() });
     }
 
     init_player_events() {
@@ -38,6 +50,7 @@ class VideoPlayer extends Component {
             this.player.src(props.src)
             this.player.poster(props.poster)
             props.onReady(this.player);
+            window.player = this.player;
         });
         this.player.on('play', () => {
             props.onPlay(this.player.currentTime());
@@ -71,7 +84,7 @@ class VideoPlayer extends Component {
 
     render() {
         return (
-            <video id={this.playerId} className={`video-js ${this.props.className}`}></video>
+            <video id={this.playerId} className={`video-js ${this.props.bigPlayButtonCentered? 'vjs-big-play-centered' : ''} ${this.props.className}`}></video>
         )
     }
 }
@@ -84,6 +97,9 @@ VideoPlayer.propTypes = {
     preload: PropTypes.oneOf(['auto', 'none', 'metadata']),
     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    hideControls: PropTypes.arrayOf(PropTypes.string),
+    bigPlayButton: PropTypes.bool,
+    bigPlayButtonCentered: PropTypes.bool,
     onReady: PropTypes.func,
     onPlay: PropTypes.func,
     onPause: PropTypes.func,
@@ -105,6 +121,9 @@ VideoPlayer.defaultProps = {
     playbackRates: [0.5, 1, 1.5, 2],
     hidePlaybackRates: false,
     className: "",
+    hideControls: [],
+    bigPlayButton: true,
+    bigPlayButtonCentered: true,
     onReady: () => { },
     onPlay: () => { },
     onPause: () => { },

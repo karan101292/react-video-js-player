@@ -73,6 +73,12 @@ class VideoApp extends Component {
 export default VideoApp;
 ```
 
+### VideoJS APIs support:
+> onReady will return <code>videojs</code> instance. Which means you can use all the APIs provided by VideoJS.<br/>[List of VideoJS APIs](https://docs.videojs.com/docs/api/player.html)
+
+### VideoJS plugins support:
+> Since most of the VideoJS plugins needs <code>videojs</code> instance to get initialized, it is very easy to integrate any of the available plugins by making use of <code>videojs</code> instance returnd by onReady event.<br/>[List of VideoJS plugins](https://videojs.com/plugins/) 
+
 ### Available Props:
 <table> 
   <thead> 
@@ -133,11 +139,23 @@ export default VideoApp;
       <td>Video speed control</td>
     </tr>
     <tr>
-      <td>hidePlaybackRates</td>
-      <td><code>boolean</code></td>
-      <td><code>false</code></td>
-      <td>Video speed control visibility toggle</td>
+      <td>hideControls</td>
+      <td><code>array</code></td>
+      <td><code>[]</code></td>
+      <td>List of controls to hide. <code>['play','volume','seekbar','timer','playbackrates','fullscreen']</code></td>
     </tr>
+    <tr>
+      <td>bigPlayButton</td>
+      <td><code>boolean</code></td>
+      <td><code>true</code></td>
+      <td>Big play button visibility toggle</td>
+    </tr> 
+    <tr>
+      <td>bigPlayButtonCentered</td>
+      <td><code>boolean</code></td>
+      <td><code>true</code></td>
+      <td>Big play button center position toggle</td>
+    </tr> 
     <tr>
       <td>className</td>
       <td><code>string</code></td>

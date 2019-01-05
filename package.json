@@ -1,6 +1,6 @@
 {
   "name": "react-video-js-player",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "React wrapper for VideoJS",
   "homepage": "https://github.com/karan101292/react-video-js-player#readme",
   "repository": "https://github.com/karan101292/react-video-js-player",
@@ -10,7 +10,9 @@
     "build": "webpack --mode production"
   },
   "keywords": [
-    "react-video-js-player"
+    "react-video-js-player",
+    "react",
+    "videojs"
   ],
   "author": "Karan Bhutwala",
   "license": "ISC",
