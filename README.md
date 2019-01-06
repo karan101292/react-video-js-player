@@ -192,7 +192,7 @@ export default VideoApp;
     </tr>
     <tr>
       <td>onSeeking</td>
-      <td>It will fire when video is beeing seeked using seekbar. It returns current time of the video</td>
+      <td>It will fire when video is being seeked using seekbar. It returns current time of the video</td>
     </tr>
     <tr>
       <td>onSeeked</td>
