@@ -77,42 +77,42 @@ export default VideoApp;
 > onReady will return <code>videojs</code> instance. Which means you can use all the APIs provided by VideoJS.<br/>[List of VideoJS APIs](https://docs.videojs.com/docs/api/player.html)
 
 ### VideoJS plugins support:
-> Since most of the VideoJS plugins needs <code>videojs</code> instance to get initialized, it is very easy to integrate any of the available plugins by making use of <code>videojs</code> instance returnd by onReady event.<br/>[List of VideoJS plugins](https://videojs.com/plugins/) 
+> Since most of the VideoJS plugins needs <code>videojs</code> instance to get initialized, it is very easy to integrate any of the available plugins by making use of <code>videojs</code> instance returnd by onReady event.<br/>[List of VideoJS plugins](https://videojs.com/plugins/)
 
 ### Available Props:
-<table> 
-  <thead> 
+<table>
+  <thead>
     <tr>
       <th>Prop Name</th>
       <th>Prop Type</th>
       <th>Default Value</th>
       <th>Description</th>
-    </tr> 
-  </thead> 
+    </tr>
+  </thead>
   <tbody>
     <tr>
-      <td>src</td>
+      <td>autoplay</td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>Video will start playing automatically if <code>true</code></td>
+    </tr>
+    <tr>
+      <td>bigPlayButton</td>
+      <td><code>boolean</code></td>
+      <td><code>true</code></td>
+      <td>Big play button visibility toggle</td>
+    </tr>
+    <tr>
+      <td>bigPlayButtonCentered</td>
+      <td><code>boolean</code></td>
+      <td><code>true</code></td>
+      <td>Big play button center position toggle</td>
+    </tr>
+    <tr>
+      <td>className</td>
       <td><code>string</code></td>
       <td><code>""</code></td>
-      <td>Video file path</td>
-    </tr>
-    <tr>
-      <td>poster</td>
-      <td><code>string</code></td>
-      <td><code>""</code></td>
-      <td>Video poster file path</td>
-    </tr>
-    <tr>
-      <td>width</td>
-      <td><code>string | number</code></td>
-      <td><code>auto</code></td>
-      <td>Video player width</td>
-    </tr>
-    <tr>
-      <td>height</td>
-      <td><code>string | number</code></td>
-      <td><code>auto</code></td>
-      <td>Video player height</td>
+      <td>Video player wrapper class. It can be used for custom player skin.</td>
     </tr>
     <tr>
       <td>controls</td>
@@ -121,22 +121,10 @@ export default VideoApp;
       <td>Video player control bar toggle</td>
     </tr>
     <tr>
-      <td>autoplay</td>
-      <td><code>boolean</code></td>
-      <td><code>false</code></td>
-      <td>Video will start playing automatically if <code>true</code></td>
-    </tr>
-    <tr>
-      <td>preload</td>
-      <td><code>string</code></td>
+      <td>height</td>
+      <td><code>string | number</code></td>
       <td><code>auto</code></td>
-      <td>video tag preload attribute</td>
-    </tr>
-    <tr>
-      <td>playbackRates</td>
-      <td><code>array</code></td>
-      <td><code>[0.5, 1, 1.5, 2]</code></td>
-      <td>Video speed control</td>
+      <td>Video player height</td>
     </tr>
     <tr>
       <td>hideControls</td>
@@ -145,62 +133,80 @@ export default VideoApp;
       <td>List of controls to hide. <code>['play','volume','seekbar','timer','playbackrates','fullscreen']</code></td>
     </tr>
     <tr>
-      <td>bigPlayButton</td>
-      <td><code>boolean</code></td>
-      <td><code>true</code></td>
-      <td>Big play button visibility toggle</td>
-    </tr> 
+      <td>playbackRates</td>
+      <td><code>array</code></td>
+      <td><code>[0.5, 1, 1.5, 2]</code></td>
+      <td>Video speed control</td>
+    </tr>
     <tr>
-      <td>bigPlayButtonCentered</td>
-      <td><code>boolean</code></td>
-      <td><code>true</code></td>
-      <td>Big play button center position toggle</td>
-    </tr> 
+      <td>preload</td>
+      <td><code>string</code></td>
+      <td><code>auto</code></td>
+      <td>video tag preload attribute</td>
+    </tr>
     <tr>
-      <td>className</td>
+      <td>poster</td>
       <td><code>string</code></td>
       <td><code>""</code></td>
-      <td>Video player wrapper class. It can be used for custom player skin.</td>
+      <td>Video poster file path</td>
     </tr>
-  </tbody> 
+    <tr>
+      <td>src</td>
+      <td><code>string</code></td>
+      <td><code>""</code></td>
+      <td>Video file path</td>
+    </tr>
+    <tr>
+      <td>width</td>
+      <td><code>string | number</code></td>
+      <td><code>auto</code></td>
+      <td>Video player width</td>
+    </tr>
+    <tr>
+      <td>withCredentials</td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>When the <code>withCredentials</code> property is set to <code>true</code>, all XHR requests for manifests and segments would have <code>withCredentials</code> set to <code>true</code> as well. This enables storing and passing cookies from the server that the manifests and segments live on. This has some implications on CORS because when set, the <code>Access-Control-Allow-Origin</code> header cannot be set to *, also, the response headers require the addition of <code>Access-Control-Allow-Credentials</code> header which is set to <code>true</code>. See <a href="http://www.html5rocks.com/en/tutorials/cors/" rel="nofollow">html5rocks's article</a> for more info.</td>
+    </tr>
+  </tbody>
 </table>
 
 ### Video tracking props:
-<table> 
-  <thead> 
+<table>
+  <thead>
     <tr>
       <th>Method Name</th>
       <th>Description</th>
-    </tr> 
-  </thead> 
+    </tr>
+  </thead>
   <tbody>
     <tr>
-      <td>onReady</td>
-      <td>It will fire when video player is ready to be used. It returns <code>videojs</code> instance.</td>
-    </tr>
-    <tr>
-      <td>onPlay</td>
-      <td>It will fire when video starts playing anytime. It returns current time of the video</td>
+      <td>onEnd</td>
+      <td>It will fire when video is finished playing.</td>
     </tr>
     <tr>
       <td>onPause</td>
       <td>It will fire when video is paused. It returns current time of the video</td>
     </tr>
     <tr>
-      <td>onTimeUpdate</td>
-      <td>It keeps firing while video is in playing state. It returns current time of the video</td>
+      <td>onPlay</td>
+      <td>It will fire when video starts playing anytime. It returns current time of the video</td>
     </tr>
     <tr>
-      <td>onSeeking</td>
-      <td>It will fire when video is being seeked using seekbar. It returns current time of the video</td>
+      <td>onReady</td>
+      <td>It will fire when video player is ready to be used. It returns <code>videojs</code> instance.</td>
     </tr>
     <tr>
       <td>onSeeked</td>
       <td>It will fire after seeking is done. It returns seek start time and seek end time for the video.</td>
     </tr>
     <tr>
-      <td>onEnd</td>
-      <td>It will fire when video is finished playing.</td>
+      <td>onSeeking</td>
+      <td>It will fire when video is being seeked using seekbar. It returns current time of the video</td>
+    </tr>
+    <tr>
+      <td>onTimeUpdate</td>
+      <td>It keeps firing while video is in playing state. It returns current time of the video</td>
     </tr>
   </tbody>
 </table>
