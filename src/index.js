@@ -12,9 +12,9 @@ class VideoPlayer extends Component {
         this.init_player_events(this.props);
     }
 
-    componentWillReceiveProps(nextProps){
+    componentWillReceiveProps(nextProps) {
         this.set_controls_visibility(this.player, nextProps.hideControls);
-        if(this.props.src !== nextProps.src){
+        if (this.props.src !== nextProps.src) {
             this.init_player(nextProps);
         }
     }
@@ -31,20 +31,21 @@ class VideoPlayer extends Component {
         this.set_controls_visibility(this.player, props.hideControls);
     }
 
-    generate_player_options(props){
+    generate_player_options(props) {
         const playerOptions = {};
-        playerOptions.controls = props.controls;
         playerOptions.autoplay = props.autoplay;
+        playerOptions.bigPlayButton = props.bigPlayButton;
+        playerOptions.controls = props.controls;
+        playerOptions.height = props.height;
         playerOptions.preload = props.preload;
         playerOptions.width = props.width;
-        playerOptions.height = props.height;
-        playerOptions.bigPlayButton = props.bigPlayButton;
+        playerOptions.withCredentials = props.withCredentials;
         const hidePlaybackRates = props.hidePlaybackRates || props.hideControls.includes('playbackrates');
         if (!hidePlaybackRates) playerOptions.playbackRates = props.playbackRates;
         return playerOptions;
     }
 
-    set_controls_visibility(player, hidden_controls){
+    set_controls_visibility(player, hidden_controls) {
         Object.keys(Controls).map(x => { player.controlBar[Controls[x]].show() })
         hidden_controls.map(x => { player.controlBar[Controls[x]].hide() });
     }
@@ -90,54 +91,55 @@ class VideoPlayer extends Component {
 
     render() {
         return (
-            <video id={this.playerId} className={`video-js ${this.props.bigPlayButtonCentered? 'vjs-big-play-centered' : ''} ${this.props.className}`}></video>
+            <video id={this.playerId} className={`video-js ${this.props.bigPlayButtonCentered ? 'vjs-big-play-centered' : ''} ${this.props.className}`}></video>
         )
     }
 }
 
 VideoPlayer.propTypes = {
-    src: PropTypes.string,
-    poster: PropTypes.string,
-    controls: PropTypes.bool,
     autoplay: PropTypes.bool,
-    preload: PropTypes.oneOf(['auto', 'none', 'metadata']),
-    width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    hideControls: PropTypes.arrayOf(PropTypes.string),
     bigPlayButton: PropTypes.bool,
     bigPlayButtonCentered: PropTypes.bool,
-    onReady: PropTypes.func,
-    onPlay: PropTypes.func,
-    onPause: PropTypes.func,
-    onTimeUpdate: PropTypes.func,
-    onSeeking: PropTypes.func,
-    onSeeked: PropTypes.func,
-    onEnd: PropTypes.func,
-    playbackRates: PropTypes.arrayOf(PropTypes.number),
+    className: PropTypes.string,
+    controls: PropTypes.bool,
+    height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    hideControls: PropTypes.arrayOf(PropTypes.string),
     hidePlaybackRates: PropTypes.bool,
-    className: PropTypes.string
+    onEnd: PropTypes.func,
+    onPause: PropTypes.func,
+    onPlay: PropTypes.func,
+    onReady: PropTypes.func,
+    onSeeked: PropTypes.func,
+    onSeeking: PropTypes.func,
+    onTimeUpdate: PropTypes.func,
+    playbackRates: PropTypes.arrayOf(PropTypes.number),
+    poster: PropTypes.string,
+    preload: PropTypes.oneOf(['auto', 'none', 'metadata']),
+    src: PropTypes.string,
+    width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    withCredentials: PropTypes.bool
 }
 
 VideoPlayer.defaultProps = {
-    src: "",
-    poster: "",
-    controls: true,
     autoplay: false,
-    preload: 'auto',
-    playbackRates: [0.5, 1, 1.5, 2],
-    hidePlaybackRates: false,
-    className: "",
-    hideControls: [],
     bigPlayButton: true,
     bigPlayButtonCentered: true,
-    onReady: () => { },
-    onPlay: () => { },
+    className: "",
+    controls: true,
+    hideControls: [],
+    hidePlaybackRates: false,
+    onEnd: () => { },
     onPause: () => { },
-    onTimeUpdate: () => { },
-    onSeeking: () => { },
+    onPlay: () => { },
+    onReady: () => { },
     onSeeked: () => { },
-    onEnd: () => { }
+    onSeeking: () => { },
+    onTimeUpdate: () => { },
+    playbackRates: [0.5, 1, 1.5, 2],
+    poster: "",
+    preload: 'auto',
+    src: "",
+    withCredentials: false
 }
-
 
 export default VideoPlayer;
