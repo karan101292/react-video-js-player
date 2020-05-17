@@ -65,6 +65,7 @@ class VideoApp extends Component {
                     onSeeking={this.onVideoSeeking.bind(this)}
                     onSeeked={this.onVideoSeeked.bind(this)}
                     onEnd={this.onVideoEnd.bind(this)}
+                    playsInline={true}
                 />
             </div>
         );
@@ -137,6 +138,12 @@ export default VideoApp;
       <td><code>array</code></td>
       <td><code>[0.5, 1, 1.5, 2]</code></td>
       <td>Video speed control</td>
+    </tr>
+    <tr>
+      <td>playsInline</td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>Allow video to play inline. On iOS 10+, you also must supply the autoplay=true prop.</td>
     </tr>
     <tr>
       <td>hideControls</td>
