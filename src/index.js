@@ -5,8 +5,10 @@ import videojs from 'video.js';
 import 'video.js/dist/video-js.css';
 
 class VideoPlayer extends Component {
-    playerId = `video-player-${(new Date) * 1}`
+        
+    playerId = (this.props.videoid !== null) ? this.props.videoid : `video-player-${(new Date) * 1}`;
     player = {};
+    
     componentDidMount() {
         this.init_player(this.props);
         this.init_player_events(this.props);
@@ -97,6 +99,7 @@ class VideoPlayer extends Component {
 
 VideoPlayer.propTypes = {
     src: PropTypes.string,
+    videoid: PropTypes.string,
     poster: PropTypes.string,
     controls: PropTypes.bool,
     autoplay: PropTypes.bool,
@@ -120,6 +123,7 @@ VideoPlayer.propTypes = {
 
 VideoPlayer.defaultProps = {
     src: "",
+    videoid: null,
     poster: "",
     controls: true,
     autoplay: false,
